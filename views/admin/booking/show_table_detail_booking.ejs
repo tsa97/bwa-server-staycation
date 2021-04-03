@@ -1,0 +1,50 @@
+<!-- DataTables Example -->
+<div class="card shadow mb-4 mt-2">
+    <div class="card-header py-3">
+        <a href="/admin/booking" class="btn btn-warning">Back</a>
+    </div>
+    
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="http://localhost:3000/<%= booking[0].payments.proofPayment %>" alt="image" style="width: 100%; display: block;">
+                <div class="row ml-1">
+                    <% if(booking[0].payments.status == 'Proses') { %>
+                        <form action="/admin/booking/<%= booking[0].id %>/confirmation?_method=PUT" method="POST">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                <i class="fas fa-check"></i> Confirm
+                            </button>
+                        </form>
+                        <form action="/admin/booking/<%= booking[0].id %>/reject?_method=PUT" method="POST" class="ml-2">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-times"></i> Reject
+                            </button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTableActivity" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Member Name</th>
+                                <th>Total</th>
+                                <th>Bank Name</th>
+                                <th>Title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><%= booking[0].memberId.firstName %> <%= booking[0].memberId.lastName %></td>
+                                <td>$ <%= booking[0].total %> </td>
+                                <td><%= booking[0].payments.bankFrom %> </td>
+                                <td><%= booking[0].itemId[0].title %> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
