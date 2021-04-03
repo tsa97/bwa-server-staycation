@@ -631,7 +631,7 @@ module.exports = {
             console.log(booking);
 
             
-            res.render('admin/booking/view_Booking', {
+            res.render('admin/booking/view_booking', {
                 booking,
                 title : 'Staycation | Booking',
                 user : req.session.user
